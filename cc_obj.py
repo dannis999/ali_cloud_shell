@@ -4,14 +4,17 @@ import os,sys,pickle,zlib,time,threading,queue
 
 is_in_idle = 'pythonw' in sys.executable
 
-DATA_PATH = 'datas'
+_DATA_PATH = 'datas'
 
 def set_data_path(path:str):
-    global DATA_PATH
-    DATA_PATH = path
+    global _DATA_PATH
+    _DATA_PATH = path
+
+def join_data_path(fn:str):
+    return os.path.join(_DATA_PATH,fn)
 
 def save_obj(obj,fn:str,compress=False):
-    fn = os.path.join(DATA_PATH,fn)
+    fn = join_data_path(fn)
     b = pickle.dumps(obj)
     if compress:
         b = zlib.compress(b)
@@ -19,7 +22,7 @@ def save_obj(obj,fn:str,compress=False):
         f.write(b)
 
 def load_obj(fn:str,compress=False):
-    fn = os.path.join(DATA_PATH,fn)
+    fn = join_data_path(fn)
     with open(fn,'rb') as f:
         b = f.read()
     if compress:
