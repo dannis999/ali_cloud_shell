@@ -7,5 +7,6 @@
 ```bash
 git config user.name "dannis999"
 git config user.email "39402843+dannis999@users.noreply.github.com"
+git config credential.helper store
 ```
 
