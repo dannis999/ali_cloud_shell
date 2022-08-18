@@ -33,6 +33,15 @@ def strtime(a):
         du = us[n]
     return '%.8g %s' % (a,du)
 
+def strcount(n:int):
+    s = str(n)
+    ans = []
+    while s:
+        ans.append(s[-3:])
+        s = s[:-3]
+    ans.reverse()
+    return ','.join(ans)
+
 def log_info(s:str,f=sys.stdout):
     dt = datetime.datetime.now()
     ts = dt.isoformat(' ')

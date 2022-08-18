@@ -1,6 +1,7 @@
 __pycache__
 export_*
 backup
+auto_output.txt
 build
 *.exe
 *.pyd
