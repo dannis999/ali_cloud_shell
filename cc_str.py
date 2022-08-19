@@ -1,6 +1,6 @@
 '字符串相关'
 
-import re,sys,time,datetime
+import re,sys,time,datetime,traceback
 from pprint import pprint
 
 UNITS = 'KMGTPEZYBND'
@@ -88,12 +88,28 @@ def join_re_pts(pts,sep='|',add_bra=True,escape=False):
         pts = (f'({t})' for t in pts)
     return sep.join(pts)
 
+def show_exc():
+    log_info('Exception')
+    traceback.print_exc(file=sys.stdout)
+    log_info('Stack')
+    traceback.print_stack(file=sys.stdout)
+
+def call_with_exc(func,*a,**k):
+    try:
+        func(*a,**k)
+    except SystemExit:
+        raise
+    except:
+        show_exc()
+        raise
+
 def _test():
     xs = (0,1,100,10**7,123<<30,907<<30,1008<<30,234<<180)
     for x in xs:
         log_info(strsize(x))
     for x in xs:
         log_info(strtime(x))
+    print(1/0)
 
 if __name__=='__main__':
-    _test()
+    call_with_exc(_test)
