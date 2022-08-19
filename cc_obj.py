@@ -10,6 +10,9 @@ def set_data_path(path:str):
     global _DATA_PATH
     _DATA_PATH = path
 
+def get_data_path():
+    return _DATA_PATH
+
 def join_data_path(fn:str):
     return os.path.join(_DATA_PATH,fn)
 

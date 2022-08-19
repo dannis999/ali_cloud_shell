@@ -1,6 +1,6 @@
 '字符串相关'
 
-import sys,time,datetime
+import re,sys,time,datetime
 from pprint import pprint
 
 UNITS = 'KMGTPEZYBND'
@@ -80,6 +80,13 @@ class prog_logger2(prog_logger):
 
     def finish(self):
         log_info(f'finish {self.n}')
+
+def join_re_pts(pts,sep='|',add_bra=True,escape=False):
+    if escape:
+        pts = map(re.escape,pts)
+    if add_bra:
+        pts = (f'({t})' for t in pts)
+    return sep.join(pts)
 
 def _test():
     xs = (0,1,100,10**7,123<<30,907<<30,1008<<30,234<<180)
