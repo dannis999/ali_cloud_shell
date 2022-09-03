@@ -74,7 +74,9 @@ def plot(*a,
             marker = 'o'
     if marker == 'none':
         marker = None
-    ka = dict(linestyle=linestyle,marker=marker,color=color,markerfacecolor='none',label=label)
+    ka = dict(linestyle=linestyle,marker=marker,color=color,label=label)
+    if marker in mp_markers_filled:
+        ka['markerfacecolor'] = 'none'
     k.update(ka)
     plt.plot(*a,**k)
     if xlabel:plt.xlabel(xlabel)
