@@ -60,6 +60,7 @@ def plot(*a,
     xlabel=None,ylabel=None,label=None,
     color=None,linestyle=None,marker=None,
     color_key=None,linestyle_key=None,marker_key=None,
+    logx=False,logy=False,
     **k):
     color_key = color_key or label
     color = color or get_session_color(color_key)
@@ -82,6 +83,8 @@ def plot(*a,
     plt.plot(*a,**k)
     if xlabel:plt.xlabel(xlabel)
     if ylabel:plt.ylabel(ylabel)
+    if logx:plt.xscale('log',base=10)
+    if logy:plt.yscale('log',base=10)
 
 def plot_df(df,xkey:str,ykey:str,**k):
     '绘制 df 中的数据，df 为字典构成的列表'
