@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from matplotlib import font_manager
+import pandas as pd
 
 plt.rcParams['xtick.direction'] = 'in' #将tick放入内内侧
 plt.rcParams['ytick.direction'] = 'in'
@@ -81,6 +82,15 @@ def plot(*a,
     plt.plot(*a,**k)
     if xlabel:plt.xlabel(xlabel)
     if ylabel:plt.ylabel(ylabel)
+
+def plot_df(df,xkey:str,ykey:str,**k):
+    '绘制 df 中的数据，df 为字典构成的列表'
+    df = pd.DataFrame(df)
+    x = np.asarray(df[xkey])
+    y = np.asarray(df[ykey])
+    k.setdefault('xlabel',xkey)
+    k.setdefault('ylabel',ykey)
+    plot(x,y,**k)
 
 def _test():
     x = np.linspace(-5,5,100)
