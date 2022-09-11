@@ -50,11 +50,14 @@ def get_session_linestyle(key,session=GLB_SESSION)->str:
 def get_session_marker(key,session=GLB_SESSION)->str:
     return get_session_value(session.setdefault('marker',{}),mp_markers,key)
 
-def plot_fin(show=True,tight=True):
-    plt.grid(True,which='major',linestyle=':',color='gray')
-    plt.grid(True,which='minor',linestyle=':',color=(0.7,0.7,0.7))
-    if tight:plt.tight_layout()
-    if show:plt.show()
+def plot_fin(show=True,tight=True,grid=True):
+    if grid:
+        plt.grid(True,which='major',linestyle=':',color='gray')
+        plt.grid(True,which='minor',linestyle=':',color=(0.7,0.7,0.7))
+    if tight:
+        plt.tight_layout()
+    if show:
+        plt.show()
 
 def plot(*a,
     xlabel=None,ylabel=None,label=None,
