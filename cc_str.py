@@ -60,11 +60,11 @@ class prog_logger:
     def finish(self):
         log_info('finish')
 
-    def log(self,i,n,delay=300):
+    def log(self,i,n,delay=300,tip=''):
         dt = time.time()
         if dt < self.t + delay:return
         self.t = dt
-        log_info(f'{i}/{n}')
+        log_info(f'{i}/{n} {tip}')
 
 class prog_logger2(prog_logger):
     def __init__(self):
