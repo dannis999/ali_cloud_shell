@@ -13,8 +13,8 @@ def set_data_path(path:str):
 def get_data_path():
     return _DATA_PATH
 
-def join_data_path(fn:str):
-    return os.path.join(_DATA_PATH,fn)
+def join_data_path(*fn):
+    return os.path.join(_DATA_PATH,*fn)
 
 def save_obj(obj,fn:str,compress=False):
     fn = join_data_path(fn)

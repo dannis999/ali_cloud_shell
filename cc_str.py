@@ -49,6 +49,15 @@ def log_info(s:str,f=sys.stdout):
     f.write(msg)
     f.flush()
 
+def get_time_fn() -> str:
+    '根据时间产生文件名'
+    dt = datetime.datetime.now()
+    ts = dt.isoformat('_')
+    ts = re.sub(r'[/\-:]','',ts)
+    ts = ts.replace('.','_')
+    dt,_ = ts.split('_',1)
+    return ts
+
 class prog_logger:
     '进度提示器'
     def __init__(self):
