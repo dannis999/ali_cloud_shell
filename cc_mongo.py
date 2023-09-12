@@ -1,6 +1,6 @@
 'mongodb 相关'
 
-import pymongo,time
+import pymongo,time,bson
 import pymongo.errors
 from concurrent import futures
 
