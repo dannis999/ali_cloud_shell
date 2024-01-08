@@ -50,6 +50,37 @@ def split_iter(it,step=1000):
     if da:
         yield da
 
+class obj_cacher:
+    '合并重复不可变对象，提高内存效率'
+    def __init__(self):
+        self.c = {}
+    def get(self,v):
+        if isinstance(v,(int,float,complex,str,bytes)):
+            c = self.c
+            try:
+                return c[v]
+            except KeyError:
+                c[v] = v
+                return v
+        get = self.get
+        if isinstance(v,dict):
+            ans = {}
+            for k,dv in v.items():
+                k = get(k)
+                dv = get(dv)
+                ans[k] = dv
+            return ans
+        if isinstance(v,list):
+            for i,dv in enumerate(v):
+                v[i] = get(dv)
+            return v
+        if isinstance(v,tuple):
+            v = tuple(map(get,v))
+            return v
+        raise TypeError(v)
+    def __getitem__(self,v):
+        return self.get(v)
+
 class async_iter_wrapper:
     def __init__(self,it,batch_size=1000,timesep=0.1,size_thr=10):
         self.batch_size = batch_size

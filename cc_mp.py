@@ -9,6 +9,13 @@ import pandas as pd
 plt.rcParams['xtick.direction'] = 'in' #将tick放入内内侧
 plt.rcParams['ytick.direction'] = 'in'
 
+#simsun = font_manager.FontProperties(fname=r'C:\Windows\Fonts\simsun.ttf',size=12)
+simsun = font_manager.FontProperties('simsun',size=12)
+# plt.legend(prop=simsun)
+# plt.xlabel(xlabel,fontproperties=simsun)
+# plt.ylabel(ylabel,fontproperties=simsun)
+# plt.title(title,fontproperties=simsun)
+
 def setup_paper_figure():
     '论文绘图样式'
     plt.rc('font',family='Times New Roman')
